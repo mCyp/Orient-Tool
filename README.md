@@ -9,10 +9,12 @@
 
 ```groovy
 allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
+	repositories {
+		...
+		maven {
+			url 'https://jitpack.io'
 		}
+	}
 }
 ```
 
@@ -20,7 +22,7 @@ allprojects {
 
 ```groovy
 dependencies {
-	  implementation 'com.github.mCyp:Orient-Tool:xxx'
+	implementation 'com.github.mCyp:Orient-Tool:xxx'
 }
 ```
 
