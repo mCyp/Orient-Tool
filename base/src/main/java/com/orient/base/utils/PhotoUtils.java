@@ -2,7 +2,8 @@ package com.orient.base.utils;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.text.TextUtils;
+import android.graphics.Canvas;
+import android.view.View;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -17,6 +18,7 @@ import java.util.List;
  *
  * 1. 获取某个路径下面的Bitmap
  */
+@SuppressWarnings("unused")
 public class PhotoUtils {
 
     /**
@@ -54,7 +56,6 @@ public class PhotoUtils {
             if (inputStream != null) {
                 try {
                     inputStream.close();
-                    options = null;
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -136,6 +137,22 @@ public class PhotoUtils {
         }
 
         return inSampleSize;
+    }
+
+    /**
+     * 将一个View转化成一个Bitmap
+     * @param v 视图
+     * @return Bitmap
+     */
+    public static Bitmap createViewBitmap(View v, int width, int height) {
+        Bitmap bitmap = Bitmap.createBitmap(width, height,
+                Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        float scaleWidth = (float) width / v.getWidth();
+        float scaleHeight = (float) height / v.getHeight();
+        canvas.scale(scaleWidth, scaleHeight);
+        v.draw(canvas);
+        return bitmap;
     }
 
 
