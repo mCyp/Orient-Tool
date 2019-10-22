@@ -5,7 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.orient.common.R;
+
+import com.orient.base.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
