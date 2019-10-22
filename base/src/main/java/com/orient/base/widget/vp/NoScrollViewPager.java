@@ -1,4 +1,4 @@
-package com.orient.common.widget.vp;
+package com.orient.base.widget.vp;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

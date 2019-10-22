@@ -1,4 +1,4 @@
-package com.orient.common.utils;
+package com.orient.base.utils;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

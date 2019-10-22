@@ -1,4 +1,4 @@
-package com.orient.common.utils;
+package com.orient.base.utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

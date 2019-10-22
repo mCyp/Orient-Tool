@@ -1,4 +1,4 @@
-package com.orient.common.base.rv;
+package com.orient.base.base.rv;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
