@@ -1,5 +1,6 @@
 package com.orient.base.utils;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 
@@ -12,12 +13,14 @@ import java.util.Set;
  * Author WangJie
  * Created on 2019/8/5.
  */
+@SuppressWarnings("unused")
 public class AppPrefUtils {
     private static AppPrefUtils instance;
     private SharedPreferences sp;
     private SharedPreferences.Editor editor;
 
-    private AppPrefUtils(String name,Context context) {
+    @SuppressLint("CommitPrefEdits")
+    private AppPrefUtils(String name, Context context) {
         sp = context.getSharedPreferences(name, Context.MODE_PRIVATE);
         editor = sp.edit();
     }

@@ -1,5 +1,7 @@
 package com.orient.base.utils;
 
+import android.annotation.SuppressLint;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -10,6 +12,8 @@ import java.util.Date;
  * Author WangJie
  * Created on 2018/9/12.
  */
+@SuppressWarnings("unused")
+@SuppressLint("SimpleDateFormat")
 public class DateUtils {
 
     public static SimpleDateFormat y2sFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

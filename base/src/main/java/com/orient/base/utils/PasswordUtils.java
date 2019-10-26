@@ -6,7 +6,7 @@ import java.security.MessageDigest;
 /**
  * 对密码进行加密和验证的类
  */
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class PasswordUtils {
 
 	// 十六进制下数字到字符的映射数组
@@ -55,9 +55,9 @@ public class PasswordUtils {
 	 * @return 十六进制字符串
 	 */
 	private static String byteArrayToHexString(byte[] b) {
-		StringBuffer resultSb = new StringBuffer();
-		for (int i = 0; i < b.length; i++) {
-			resultSb.append(byteToHexString(b[i]));
+		StringBuilder resultSb = new StringBuilder();
+		for (byte value : b) {
+			resultSb.append(byteToHexString(value));
 		}
 		return resultSb.toString();
 	}

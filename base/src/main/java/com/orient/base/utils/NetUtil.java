@@ -15,7 +15,7 @@ import android.text.TextUtils;
  * 
  * @author <a href="http://www.trinea.cn" target="_blank">Trinea</a> 2014-11-03
  */
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class NetUtil {
 
     public static final String NETWORK_TYPE_WIFI       = "wifi";

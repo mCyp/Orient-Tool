@@ -28,13 +28,10 @@ import java.util.zip.ZipFile;
  */
 @SuppressWarnings({"unused", "WeakerAccess", "ResultOfMethodCallIgnored"})
 public class FileUtils {
-
-
     // 定义存放路径
 
     /**
      * 默认将路径设置在App下面
-     *
      * @return 默认根目录
      */
     public static File getRootDirectory(Context context) {
@@ -43,7 +40,6 @@ public class FileUtils {
 
     /**
      * 规定的照片的存放路径
-     *
      * @return 照片的存放路径
      */
     public static File getPhotoDirectory(Context context) {
@@ -55,26 +51,64 @@ public class FileUtils {
     }
 
     /**
-     * 规定的多媒体的存放路径
-     *
-     * @return 多媒体的存放路径
+     * 规定的录音的存放路径
+     * @return 录音的存放路径
      */
     public static File getAudioDirectory(Context context) {
-        File photoDir = new File(getRootDirectory(context), "media");
-        if (!photoDir.exists())
-            photoDir.mkdirs();
+        File audioDir = new File(getRootDirectory(context), "audio");
+        if (!audioDir.exists())
+            audioDir.mkdirs();
 
-        return photoDir;
+        return audioDir;
+    }
+
+    /**
+     * 签名的存放路径
+     * @param context 上下文
+     * @return 签名的存放路径
+     */
+    public static File getSignDirectory(Context context) {
+        File signDir = new File(getRootDirectory(context), "sign");
+        if (!signDir.exists())
+            signDir.mkdirs();
+
+        return signDir;
+    }
+
+    /**
+     * 多媒体文件的存放路径
+     */
+    public static File getMediaDirectory(Context context) {
+        File mediaDir = new File(getRootDirectory(context), "media");
+        if (!mediaDir.exists())
+            mediaDir.mkdirs();
+
+        return mediaDir;
     }
 
     /**
      * 自定义路径
-     *
      * @return 自定义路径
      */
-    public static File getDefinePhotoDirectory(File parentFile, String name) {
+    public static File getDefineDirectory(File parentFile, String name) {
         File dir = new File(parentFile, name);
         if (!dir.exists())
+            dir.mkdirs();
+
+        return dir;
+    }
+
+    /**
+     * 自定义三级路径
+     * @param parentFile 一级目录
+     * @param name       二级文件名
+     * @param subName    子文件名
+     * @return 自定义路径
+     */
+    public static File getDefineDirectory(File parentFile, String name, String subName) {
+        String p = parentFile.getAbsolutePath() + File.separator + name + File.separator + subName;
+        File dir = new File(p);
+        if(!dir.exists())
             dir.mkdirs();
 
         return dir;
@@ -157,7 +191,7 @@ public class FileUtils {
 
     /**
      * 得到某个路径下面某个类型文件的所有路径
-     * @param path 父路径
+     * @param path      父路径
      * @param Extension 文件扩展名
      * @return 子路径集合
      */
@@ -203,7 +237,7 @@ public class FileUtils {
 
     /**
      * 解压文件
-     * @param inputZip 解压的文件地址
+     * @param inputZip             解压的文件地址
      * @param destinationDirectory 目录存放路径
      */
     public static void unzipFile(String inputZip, String destinationDirectory) throws IOException {
@@ -261,6 +295,7 @@ public class FileUtils {
 
     /**
      * 递归创建文件夹
+     *
      * @param dirPath 创建的路径
      */
     public static void createDir(String dirPath) {

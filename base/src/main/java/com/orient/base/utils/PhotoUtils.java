@@ -5,9 +5,11 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.view.View;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.LinkedList;
@@ -15,14 +17,87 @@ import java.util.List;
 
 /**
  * 照片的工具类
- *
+ * <p>
  * 1. 获取某个路径下面的Bitmap
  */
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "ResultOfMethodCallIgnored"})
 public class PhotoUtils {
 
     /**
+     * 通过路径获取单个Bitmap
+     *
+     * @param path 路径
+     * @return Bitmap
+     */
+    public static Bitmap getSingleBitmapByPath(String path) {
+        File file = new File(path);
+        if (!file.exists())
+            return null;
+
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inPreferredConfig = Bitmap.Config.RGB_565;
+        options.inSampleSize = 2;
+        FileInputStream is = null;
+        Bitmap bitmap;
+        try {
+            is = new FileInputStream(file);
+            bitmap = BitmapFactory.decodeStream(is, null, options);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            if (is != null) {
+                try {
+                    is.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return bitmap;
+    }
+
+    /**
+     * 通过指定路径或者指定宽高的图片
+     *
+     * @param path      路径
+     * @param reqWidth  需要的宽度
+     * @param reqHeight 需要的高度
+     * @return Bitmap
+     */
+    public static Bitmap getSingleBitmapByPath(String path, int reqWidth, int reqHeight) {
+        File f = new File(path);
+        if (!f.exists())
+            return null;
+
+        FileInputStream is = null;
+        Bitmap bitmap = null;
+        try {
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inJustDecodeBounds = true;
+            options.inPreferredConfig = Bitmap.Config.RGB_565;
+            is = new FileInputStream(f);
+            BitmapFactory.decodeStream(is, null, options);
+            options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
+            options.inJustDecodeBounds = false;
+            is = new FileInputStream(f);
+            bitmap = BitmapFactory.decodeStream(is, null, options);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (is != null)
+                    is.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return bitmap;
+    }
+
+    /**
      * 得到某个路径下面的Bitmaps
+     *
      * @param path      路径
      * @param Extension 扩展名
      * @return List<Bitmap>
@@ -67,6 +142,7 @@ public class PhotoUtils {
 
     /**
      * 得到某个路径下面的Bitmaps，指定图片的宽和高
+     *
      * @param path      路径
      * @param Extension 扩展名
      * @return List<Bitmap>
@@ -116,6 +192,7 @@ public class PhotoUtils {
 
     /**
      * 计算压缩比例
+     *
      * @return 压缩比列
      */
     private static int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
@@ -141,6 +218,7 @@ public class PhotoUtils {
 
     /**
      * 将一个View转化成一个Bitmap
+     *
      * @param v 视图
      * @return Bitmap
      */
@@ -153,6 +231,49 @@ public class PhotoUtils {
         canvas.scale(scaleWidth, scaleHeight);
         v.draw(canvas);
         return bitmap;
+    }
+
+    /**
+     * 储存签名路径
+     *
+     * @param bitmap     Bitmap
+     * @param parentPath 存放的父路径
+     * @param name       文件名
+     * @return 文件字符串
+     */
+    public static String saveSign(Bitmap bitmap, String parentPath, String name) {
+        ByteArrayOutputStream bao = null;
+        FileOutputStream fos = null;
+        File file = new File(parentPath);
+        if (!file.exists()) {
+            file.mkdirs();
+        }
+        String fileName = name + ".jpg";
+        File cacheFile = new File(file, fileName);
+
+        // 检查该文件是否存在，如果不存在就直接创建一个
+        try {
+            cacheFile.createNewFile();
+            fos = new FileOutputStream(cacheFile);
+            bao = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bao);
+            byte[] b = bao.toByteArray();
+            if (b != null) {
+                fos.write(b);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (fos != null)
+                    fos.close();
+                if (bao != null)
+                    bao.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return cacheFile.getPath();
     }
 
 
