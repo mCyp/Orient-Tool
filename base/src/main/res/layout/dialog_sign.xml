@@ -21,7 +21,7 @@
         android:layout_weight="1"
         android:orientation="horizontal">
 
-        <com.orient.common.widget.sign.PaintView
+        <com.orient.base.widget.sign.PaintView
             android:id="@+id/pt"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
