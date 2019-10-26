@@ -46,6 +46,14 @@ public class SignDialog extends Dialog {
         this.mCallback = callback;
     }
 
+    public SignDialog(@NonNull Context context, int themeId) {
+        super(context, themeId);
+    }
+
+    public void setCallback(SignFinishCallback callback){
+        this.mCallback = callback;
+    }
+
     /**
      * 设置展示的路径
      * @param path 路径
@@ -95,6 +103,7 @@ public class SignDialog extends Dialog {
                 if (!TextUtils.isEmpty(p)) {
                     mCallback.onFinish(true, p);
                 }
+                dismiss();
             }
         });
 

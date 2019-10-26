@@ -36,7 +36,7 @@ public class PhotoUtils {
 
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inPreferredConfig = Bitmap.Config.RGB_565;
-        options.inSampleSize = 2;
+        options.inSampleSize = 1;
         FileInputStream is = null;
         Bitmap bitmap;
         try {
