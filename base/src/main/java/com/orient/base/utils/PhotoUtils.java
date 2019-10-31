@@ -25,7 +25,6 @@ public class PhotoUtils {
 
     /**
      * 通过路径获取单个Bitmap
-     *
      * @param path 路径
      * @return Bitmap
      */
@@ -59,7 +58,6 @@ public class PhotoUtils {
 
     /**
      * 通过指定路径或者指定宽高的图片
-     *
      * @param path      路径
      * @param reqWidth  需要的宽度
      * @param reqHeight 需要的高度
@@ -97,7 +95,6 @@ public class PhotoUtils {
 
     /**
      * 得到某个路径下面的Bitmaps
-     *
      * @param path      路径
      * @param Extension 扩展名
      * @return List<Bitmap>
@@ -142,7 +139,6 @@ public class PhotoUtils {
 
     /**
      * 得到某个路径下面的Bitmaps，指定图片的宽和高
-     *
      * @param path      路径
      * @param Extension 扩展名
      * @return List<Bitmap>
@@ -192,7 +188,6 @@ public class PhotoUtils {
 
     /**
      * 计算压缩比例
-     *
      * @return 压缩比列
      */
     private static int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
@@ -218,7 +213,6 @@ public class PhotoUtils {
 
     /**
      * 将一个View转化成一个Bitmap
-     *
      * @param v 视图
      * @return Bitmap
      */
@@ -235,16 +229,15 @@ public class PhotoUtils {
 
     /**
      * 储存签名路径
-     *
      * @param bitmap     Bitmap
-     * @param parentPath 存放的父路径
+     * @param dir 存放的父路径
      * @param name       文件名
      * @return 文件字符串
      */
-    public static String saveSign(Bitmap bitmap, String parentPath, String name) {
+    public static String saveSign(Bitmap bitmap, String dir, String name) {
         ByteArrayOutputStream bao = null;
         FileOutputStream fos = null;
-        File file = new File(parentPath);
+        File file = new File(dir);
         if (!file.exists()) {
             file.mkdirs();
         }
@@ -252,6 +245,41 @@ public class PhotoUtils {
         File cacheFile = new File(file, fileName);
 
         // 检查该文件是否存在，如果不存在就直接创建一个
+        try {
+            cacheFile.createNewFile();
+            fos = new FileOutputStream(cacheFile);
+            bao = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bao);
+            byte[] b = bao.toByteArray();
+            if (b != null) {
+                fos.write(b);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (fos != null)
+                    fos.close();
+                if (bao != null)
+                    bao.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return cacheFile.getPath();
+    }
+
+
+    /**
+     * 储存签名路径
+     * @param bitmap     Bitmap
+     * @return 文件字符串
+     */
+    public static String saveSign(Bitmap bitmap, String path) {
+        ByteArrayOutputStream bao = null;
+        FileOutputStream fos = null;
+        File cacheFile = new File(path);
+
         try {
             cacheFile.createNewFile();
             fos = new FileOutputStream(cacheFile);

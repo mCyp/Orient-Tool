@@ -2,73 +2,76 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@drawable/dialog_bg"
-    android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="52dp"
         android:background="@drawable/dialog_bg_top"
-        app:titleTextColor="#ffffff"
-        app:title="签名" />
+        app:title="设置端口"
+        app:titleTextColor="#ffffff"/>
 
-    <FrameLayout
-        android:id="@+id/lay"
+    <EditText
+        android:id="@+id/edit_ip"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="horizontal">
+        android:hint="@string/net_ip"
+        android:textColorHint="@color/textSecond"
+        android:textColor="@color/textPrimary"
+        android:padding="10dp"
+        android:inputType="text"/>
 
-        <com.orient.base.widget.sign.PaintView
-            android:id="@+id/pt"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="gone"/>
-
-        <ImageView
-            android:id="@+id/iv_content"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:visibility="gone"/>
-
-    </FrameLayout>
+    <EditText
+        android:id="@+id/edit_port"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:hint="@string/net_port"
+        android:textColorHint="@color/textSecond"
+        android:textColor="@color/textPrimary"
+        android:padding="10dp"
+        android:inputType="number"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="52dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/dialog_bg_bottom"
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/mBtnNo"
+            android:id="@+id/btn_no"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/dialog_bg_bottom_left"
             android:gravity="center"
-            android:text="重置"
-            android:textColor="@color/textPrimary"
-            android:textSize="16sp" />
+            android:text="@string/cb_no"
+            android:textColor="#ffffff"
+            android:background="@drawable/dialog_bg_bottom_left"
+            android:textSize="16sp"
+            />
 
         <View
             android:layout_width="1dp"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"/>
 
 
         <Button
-            android:id="@+id/mBtnYes"
+            android:id="@+id/btn_yes"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/dialog_bg_bottom_right"
             android:gravity="center"
-            android:text="确定"
+            android:text="@string/cb_yes"
             android:textColor="#ffffff"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            />
     </LinearLayout>
 
 </LinearLayout>

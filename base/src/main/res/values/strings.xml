@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Common</string>
+
+    <!-- QrCodeDialog -->
+    <string name="net_ip">ip地址</string>
+    <string name="net_port">端口号</string>
+    <string name="cb_yes">是</string>
+    <string name="cb_no">否</string>
+    <string name="title_ip_port">设置IP和端口</string>
 </resources>
