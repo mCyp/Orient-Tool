@@ -170,7 +170,8 @@ public class SignDialog extends Dialog {
         mSignContent = findViewById(R.id.pt);
         mToolbar = findViewById(R.id.toolbar);
 
-        initColor();
+        if (!TextUtils.isEmpty(themeColor))
+            initColor();
 
         if (isSign) {
             // 是否是签名
@@ -183,19 +184,19 @@ public class SignDialog extends Dialog {
         }
     }
 
-    private void initColor(){
-        GradientDrawable drawable = (GradientDrawable)mToolbar.getBackground();
+    private void initColor() {
+        GradientDrawable drawable = (GradientDrawable) mToolbar.getBackground();
         drawable.setColor(Color.parseColor(themeColor));
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             RippleDrawable btnDrawable = (RippleDrawable) mBtnYes.getBackground();
-            if(btnDrawable != null) {
+            if (btnDrawable != null) {
                 GradientDrawable maskDrawable = (GradientDrawable) btnDrawable.getDrawable(0);
-                if(maskDrawable != null){
+                if (maskDrawable != null) {
                     maskDrawable.setColor(Color.parseColor(themeColor));
                 }
             }
-        }else {
+        } else {
             GradientDrawable btnDrawable = (GradientDrawable) mBtnYes.getBackground();
             drawable.setColor(Color.parseColor(themeColor));
         }

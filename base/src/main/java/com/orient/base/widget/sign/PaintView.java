@@ -16,6 +16,7 @@ import android.view.View;
 
 /**
  * 签名版程序
+ *
  * @Auther wangjie on 2018/1/10.
  */
 
@@ -38,7 +39,7 @@ public class PaintView extends View {
     }
 
     public PaintView(Context context) {
-        this(context,null);
+        this(context, null);
     }
 
     // 初始化基本的参数
@@ -58,7 +59,7 @@ public class PaintView extends View {
 
         mScreenWidth = MeasureSpec.getSize(widthMeasureSpec);
         mScreenHeight = MeasureSpec.getSize(heightMeasureSpec);
-        if(mBitmap == null){
+        if (mBitmap == null) {
             mBitmap = Bitmap.createBitmap(mScreenWidth, mScreenHeight, Config.ARGB_8888);
             mCanvas = new Canvas(mBitmap);
             mCanvas.drawColor(Color.WHITE);
@@ -68,7 +69,8 @@ public class PaintView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        canvas.drawBitmap(mBitmap, 0, 0, null);
+        if (mBitmap != null)
+            canvas.drawBitmap(mBitmap, 0, 0, null);
         canvas.drawPath(mPath, mPaint);
     }
 
@@ -128,7 +130,11 @@ public class PaintView extends View {
     public void clear() {
         if (mCanvas != null) {
             mPath.reset();
-            mCanvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
+            mCanvas.drawColor(Color.WHITE, PorterDuff.Mode.CLEAR);
+
+            mBitmap = Bitmap.createBitmap(mScreenWidth, mScreenHeight, Config.ARGB_8888);
+            mCanvas = new Canvas(mBitmap);
+            mCanvas.drawColor(Color.WHITE);
             invalidate();
         }
     }

@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*final SignDialog dialog = new SignDialog(MainActivity.this, R.style.Theme_AppCompat_Dialog, new SignDialog.SignFinishCallback() {
+                final SignDialog dialog = new SignDialog(MainActivity.this, R.style.Theme_AppCompat_Dialog, new SignDialog.SignFinishCallback() {
                     @Override
                     public void onFinish(boolean isFinish, String p) {
                         if(isFinish) {
@@ -38,16 +38,16 @@ public class MainActivity extends AppCompatActivity {
                 });
                 dialog.setThemeColor("#f06292");
                 dialog.setSignPath(getExternalCacheDir().getAbsolutePath(), "144");
-                dialog.show();*/
+                dialog.show();
 
-                NetDialog dialog = new NetDialog(MainActivity.this, R.style.Theme_AppCompat_Dialog, new NetDialog.AddressCallback() {
+                /*NetDialog dialog = new NetDialog(MainActivity.this, R.style.Theme_AppCompat_Dialog, new NetDialog.AddressCallback() {
                     @Override
                     public void onAddAddress(String ip, String port) {
                         Toast.makeText(MainActivity.this,"ip："+ip+"，port："+port,Toast.LENGTH_SHORT).show();
                     }
                 });
                 dialog.setThemeColor("#f06292");
-                dialog.show();
+                dialog.show();*/
             }
         });
 

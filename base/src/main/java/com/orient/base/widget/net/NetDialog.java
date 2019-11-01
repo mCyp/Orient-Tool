@@ -56,14 +56,15 @@ public class NetDialog extends Dialog {
     }
 
     public NetDialog(@NonNull Context context, @StyleRes int themeResId) {
-        this(context,themeResId,null);
+        this(context, themeResId, null);
     }
 
     /**
      * 设置回调
+     *
      * @param callback AddressCallback
      */
-    public void setAddressCallback(AddressCallback callback){
+    public void setAddressCallback(AddressCallback callback) {
         this.callback = callback;
     }
 
@@ -78,6 +79,7 @@ public class NetDialog extends Dialog {
 
     /**
      * 设置ip地址
+     *
      * @param ipAddress ip地址
      */
     public void setInfo(String ipAddress) {
@@ -100,7 +102,8 @@ public class NetDialog extends Dialog {
         mPort = findViewById(R.id.edit_port);
         mToolbar = findViewById(R.id.toolbar);
 
-        initColor();
+        if (!TextUtils.isEmpty(themeColor))
+            initColor();
 
         String ipAddress = this.ipAddress;
         if (!TextUtils.isEmpty(ipAddress)) {
@@ -156,19 +159,19 @@ public class NetDialog extends Dialog {
         getWindow().setBackgroundDrawable((new ColorDrawable(Color.TRANSPARENT)));
     }
 
-    private void initColor(){
-        GradientDrawable drawable = (GradientDrawable)mToolbar.getBackground();
+    private void initColor() {
+        GradientDrawable drawable = (GradientDrawable) mToolbar.getBackground();
         drawable.setColor(Color.parseColor(themeColor));
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             RippleDrawable btnDrawable = (RippleDrawable) mSure.getBackground();
-            if(btnDrawable != null) {
+            if (btnDrawable != null) {
                 GradientDrawable maskDrawable = (GradientDrawable) btnDrawable.getDrawable(0);
-                if(maskDrawable != null){
+                if (maskDrawable != null) {
                     maskDrawable.setColor(Color.parseColor(themeColor));
                 }
             }
-        }else {
+        } else {
             GradientDrawable btnDrawable = (GradientDrawable) mSure.getBackground();
             drawable.setColor(Color.parseColor(themeColor));
         }
