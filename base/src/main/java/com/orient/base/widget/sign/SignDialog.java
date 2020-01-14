@@ -2,15 +2,14 @@ package com.orient.base.widget.sign;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.RippleDrawable;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.View;

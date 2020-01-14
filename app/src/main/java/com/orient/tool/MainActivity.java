@@ -1,16 +1,13 @@
 package com.orient.tool;
 
-import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.orient.base.utils.PhotoUtils;
-import com.orient.base.widget.net.NetDialog;
 import com.orient.base.widget.sign.SignDialog;
 
 public class MainActivity extends AppCompatActivity {
